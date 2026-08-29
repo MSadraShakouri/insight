@@ -1,0 +1,479 @@
+/* ============================================================
+   Insight — screen-specific styles
+   One file. Each screen has its own tone so they feel distinct.
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   Setup screen
+   ---------------------------------------------------------- */
+.setup { background: var(--card); }
+
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--s-2);
+}
+
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin: var(--s-4) 0 var(--s-2);
+}
+
+[dir="rtl"] .section-label { letter-spacing: 0; }
+
+/* Word list radio cards. */
+.list-pick {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-2);
+}
+
+.list-pick label {
+  background: var(--card-soft);
+  border: 2px solid var(--line);
+  border-radius: var(--r-md);
+  padding: var(--s-3);
+  text-align: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.list-pick label:hover {
+  border-color: var(--grape);
+  transform: translateY(-2px);
+}
+
+.list-pick input { display: none; }
+
+.list-pick input:checked + .list-card {
+  /* the inner card gets the active look */
+}
+
+.list-pick label:has(input:checked) {
+  border-color: var(--coral);
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+}
+
+.list-pick .list-emoji { font-size: 1.5rem; }
+.list-pick .list-meta {
+  font-size: 0.7rem;
+  color: var(--ink-mute);
+  letter-spacing: 0.05em;
+}
+
+.hint {
+  font-size: 0.78rem;
+  color: var(--ink-mute);
+  margin-top: var(--s-2);
+  font-weight: 700;
+}
+
+.hint.warn { color: var(--bad); }
+
+/* ----------------------------------------------------------
+   Choose-subject screen
+   ---------------------------------------------------------- */
+.choose-subject { background: var(--card); }
+
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--s-2);
+}
+
+.subject-tile {
+  /* Per-player color via --tile-main and --tile-tint (set inline by
+     chooseSubject.js). The border-left is a thick colored stripe that
+     announces the player's color, and the ::before pseudo-element
+     lays the player's tint over the card background as a subtle wash. */
+  background: var(--card-soft);
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  padding: var(--s-3) var(--s-3);
+  text-align: left;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+  color: var(--ink);
+  min-height: 56px;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  /* The thick colored stripe on the leading edge (left in LTR, right
+     in RTL). border-left sets the LTR side; border-inline-start would
+     be cleaner but Safari's support is uneven, so we use a media-query
+     override for RTL below. */
+  border-left: 8px solid var(--tile-main, var(--ink-mute));
+}
+
+[dir="rtl"] .subject-tile {
+  border-left: 1.5px solid var(--line);
+  border-right: 8px solid var(--tile-main, var(--ink-mute));
+}
+
+.subject-tile::before {
+  /* Tint overlay — the per-player pastel/dark tint covers ~50% of the
+     card area, giving a soft wash without overpowering the text. */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--tile-tint, transparent);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.subject-tile > * { position: relative; z-index: 1; }
+
+.subject-tile:hover {
+  transform: translateY(-2px);
+  background: var(--card);
+  box-shadow: var(--shadow-md);
+}
+
+.subject-tile .name {
+  font-weight: 800;
+  font-size: 0.95rem;
+  word-break: break-word;
+  color: var(--tile-main, var(--ink));
+}
+
+/* ----------------------------------------------------------
+   Gameplay screen — the important one
+   ---------------------------------------------------------- */
+.gameplay {
+  background: var(--card);
+  position: relative;
+}
+
+/* Top strip: 3 tiles in a row (Subject, Guesser, Round). No score
+   in the gameplay screen — the score is only revealed at the end.
+   The Subject and Guesser tiles are colored in each player's color
+   (set via --tile-main and --tile-tint from gameplay.js). */
+.game-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-2);
+  margin-bottom: var(--s-4);
+}
+
+.info-tile {
+  background: var(--card-soft);
+  border-radius: var(--r-md);
+  padding: var(--s-3) var(--s-2);
+  text-align: center;
+  border: 1.5px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 64px;
+}
+
+/* Subject and Guesser tiles get a subtle tint wash in the player's
+   color. The .value color is set inline by gameplay.js using the
+   player's main color (so it overrides any default). */
+.info-tile.subject,
+.info-tile.psychic {
+  background: var(--tile-tint, var(--card-soft));
+}
+
+.info-tile .label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 4px;
+}
+
+[dir="rtl"] .info-tile .label { letter-spacing: 0; }
+
+.info-tile .value {
+  font-weight: 800;
+  font-size: 0.95rem;
+  line-height: 1.1;
+  word-break: break-word;
+  color: var(--ink);
+}
+
+.info-tile.round .value { color: var(--sky); }
+
+.progress {
+  height: 6px;
+  background: var(--card-soft);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: var(--s-4);
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--coral);
+  border-radius: 999px;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.word-prompt {
+  text-align: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin-bottom: var(--s-3);
+}
+
+/* Word pair — two big cards, not three columns. */
+.word-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-2);
+  margin-bottom: var(--s-4);
+}
+
+.word-card {
+  background: var(--card-soft);
+  border: 2.5px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--s-5) var(--s-3);
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 1.15;
+  color: var(--ink);
+  min-height: 130px;
+  display: grid;
+  place-items: center;
+  word-break: break-word;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.word-card.coral { background: linear-gradient(0deg, var(--card), var(--card)); border-color: var(--coral); color: var(--ink); }
+/* Word pair — left (coral-tinted) and right (mint-tinted) cards. */
+.word-card.left  { background: #ffe9e3; border-color: var(--coral); }
+.word-card.right { background: #d8f1ed; border-color: var(--mint); }
+
+/* Re-trigger-able flip animation. Re-add `.flip` after removing it
+   and forcing reflow to replay the animation. */
+@keyframes wordFlip {
+  0%   { transform: scale(0.92) translateY(4px); opacity: 0; }
+  60%  { transform: scale(1.02) translateY(0);   opacity: 1; }
+  100% { transform: scale(1) translateY(0);      opacity: 1; }
+}
+
+.word-card.flip {
+  animation: wordFlip 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-color-scheme: dark) {
+  .word-card.left  { background: #3a1f1c; }
+  .word-card.right { background: #1c3331; }
+}
+
+.gameplay-actions { margin-top: var(--s-3); }
+.gameplay-actions .btn { padding: 16px 18px; font-size: 1rem; }
+
+/* ----------------------------------------------------------
+   Session summary
+   ---------------------------------------------------------- */
+.session { background: var(--card); }
+
+.score-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.score-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s-3);
+  background: var(--card-soft);
+  border-radius: var(--r-md);
+  border: 1.5px solid var(--line);
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.score-row .who { display: flex; align-items: center; gap: var(--s-2); }
+.color-dot {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1.5px var(--card), 0 0 0 2.5px var(--line);
+}
+.score-row .pts {
+  font-family: var(--font-display);
+  color: var(--ink);
+  background: var(--card);
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1.5px solid var(--line);
+  font-size: 0.9rem;
+}
+
+.score-row.is-winner {
+  background: #d8f5f1;
+  border-color: var(--mint);
+}
+.score-row.is-winner .pts {
+  background: var(--ink);
+  color: var(--mint);
+  border-color: var(--ink);
+}
+
+.winner-banner {
+  background: var(--mint);
+  color: var(--ink);
+  border-radius: var(--r-md);
+  padding: var(--s-3) var(--s-4);
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-align: center;
+  margin-top: var(--s-3);
+}
+
+.winner-banner .crown { margin-right: 4px; }
+
+/* ----------------------------------------------------------
+   Final results
+   ---------------------------------------------------------- */
+.final { background: var(--card); }
+
+.podium {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  list-style: none;
+  margin: var(--s-3) 0;
+}
+
+.podium li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-md);
+  border: 2px solid var(--line);
+  font-weight: 800;
+  background: var(--card-soft);
+}
+
+.podium .rank {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  width: 32px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.podium .name { flex: 1; min-width: 0; word-break: break-word; }
+.podium .pts {
+  font-family: var(--font-display);
+  background: var(--card);
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1.5px solid var(--line);
+  font-size: 0.95rem;
+}
+
+.podium li.gold {
+  background: #ffe48a;
+  border-color: #f0b820;
+}
+.podium li.gold .rank { color: #b06f00; }
+.podium li.gold .pts { background: #fff8e7; border-color: #f0b820; color: #b06f00; }
+
+.podium li.silver {
+  background: #e8eaef;
+  border-color: #b8bccb;
+}
+.podium li.silver .rank { color: #5b6071; }
+.podium li.silver .pts { background: #fff8e7; border-color: #b8bccb; color: #5b6071; }
+
+.podium li.bronze {
+  background: #f5c79a;
+  border-color: #d68b3a;
+}
+.podium li.bronze .rank { color: #8a4d10; }
+.podium li.bronze .pts { background: #fff8e7; border-color: #d68b3a; color: #8a4d10; }
+
+/* Make sure dark mode still reads on gold/silver/bronze. */
+@media (prefers-color-scheme: dark) {
+  .score-row.is-winner {
+    background: #1c3331;
+    border-color: #2dd4bf;
+  }
+  .score-row.is-winner .pts {
+    background: var(--mint);
+    color: var(--ink);
+    border-color: var(--mint);
+  }
+
+  .winner-banner {
+    background: #1c3331;
+    color: var(--mint);
+    border: 1.5px solid #2dd4bf;
+  }
+
+  .podium li.gold {
+    background: #5a4214;
+    border-color: #b88930;
+  }
+  .podium li.gold .rank,
+  .podium li.gold .pts { color: #ffd55c; }
+  .podium li.gold .pts { background: #2a1f0a; border-color: #b88930; }
+
+  .podium li.silver {
+    background: #2d2f3a;
+    border-color: #6b7080;
+  }
+  .podium li.silver .rank,
+  .podium li.silver .pts { color: #d4d6e0; }
+  .podium li.silver .pts { background: #1f2029; border-color: #6b7080; }
+
+  .podium li.bronze {
+    background: #4a2e16;
+    border-color: #c97a2a;
+  }
+  .podium li.bronze .rank,
+  .podium li.bronze .pts { color: #f5b97a; }
+  .podium li.bronze .pts { background: #2a1808; border-color: #c97a2a; }
+}
+
+/* ----------------------------------------------------------
+   Responsive
+   ---------------------------------------------------------- */
+@media (max-width: 480px) {
+  .topbar { padding: var(--s-3); }
+  .brand { font-size: 1.05rem; }
+  .stage { padding: var(--s-3); }
+  .screen { padding: var(--s-4) var(--s-3); border-radius: var(--r-lg); }
+  .screen h1 { font-size: 1.4rem; }
+  .word-card { font-size: 1.15rem; min-height: 110px; padding: var(--s-4) var(--s-2); }
+}
+
+@media (min-width: 720px) {
+  .screen { padding: var(--s-7) var(--s-6); }
+  .screen h1 { font-size: 2rem; }
+  .word-card { font-size: 1.6rem; min-height: 150px; }
+}

@@ -1,0 +1,60 @@
+{
+  "app": {
+    "title": "بینش",
+    "tagline": "دوستانت واقعاً چقدر تو رو می‌شناسن؟"
+  },
+  "setup": {
+    "heading": "بازی رو آماده کن",
+    "lede": "بازیکن‌ها رو اضافه کن، بعد شروع کنیم.",
+    "playerCount": "تعداد بازیکن‌ها",
+    "players_one": "{{count}} بازیکن",
+    "players_other": "{{count}} بازیکن",
+    "namesHeading": "اسم بازیکن‌ها",
+    "nameLabel": "بازیکن {{n}}",
+    "namePlaceholder": "اسم بازیکن {{n}}",
+    "wordList": "فهرست کلمات",
+    "wordListEnglish": "English",
+    "wordListPersian": "فارسی",
+    "wordCount": "{{count}} کلمه",
+    "start": "شروع بازی",
+    "lowWordsWarning": "فقط {{count}} کلمه — ممکنه کلمات تکراری بشن.",
+    "allDone": "همه یک بار سوژه شدن!"
+  },
+  "chooseSubject": {
+    "eyebrow": "انتخاب کن",
+    "heading": "سوژه کیه؟",
+    "lede": "بقیه می‌خوان ذهن این شخص رو بخونن.",
+    "back": "بازگشت به تنظیمات"
+  },
+  "gameplay": {
+    "subject": "سوژه",
+    "psychic": "حدس‌زننده",
+    "round": "دور",
+    "promptFor": "{{name}} کدوم رو بیشتر ترجیح میده؟",
+    "shuffle": "کلمه جدید",
+    "correct": "درست",
+    "incorrect": "غلط",
+    "noWords": "کلمه‌ای موجود نیست."
+  },
+  "session": {
+    "eyebrow": "جلسه تموم شد",
+    "heading": "دور خوبی بود!",
+    "subject": "سوژه: {{name}}",
+    "thisSession": "امتیازات این جلسه",
+    "bestPsychic": "{{name}} با {{score}} حدس درست، {{subject}} رو بهتر از همه می‌شناخت!",
+    "tiedPsychic": "{{names}} با {{score}} حدس درست، {{subject}} رو به طور مشترک بهتر از همه می‌شناختند!",
+    "pickNext": "سوژه بعدی رو انتخاب کن",
+    "allDone": "همه یک دور سوژه شدن!",
+    "showResults": "نمایش نتایج نهایی"
+  },
+  "final": {
+    "eyebrow": "بازی تمام",
+    "heading": "رتبه‌بندی نهایی",
+    "playAgain": "بازی دوباره",
+    "changePlayers": "تغییر بازیکن‌ها"
+  },
+  "common": {
+    "points_one": "{{count}} امتیاز",
+    "points_other": "{{count}} امتیاز"
+  }
+}

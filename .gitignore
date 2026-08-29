@@ -1,0 +1,11 @@
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Test deps (in case anyone runs npm install for jsdom-based tests)
+node_modules/
+

@@ -1,0 +1,152 @@
+/* ============================================================
+   Insight — base styles
+   Reset, tokens, typography. No visual styling.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+:root {
+  /* Light tokens — soft lavender-white, friendly and colorful
+     (deliberately NOT cream/paper so it doesn't echo piecework). */
+  --paper:        #f3f0ff;
+  --paper-2:      #e6e0ff;
+  --ink:          #1a1623;   /* deep ink, not pure black */
+  --ink-soft:     #4a4458;
+  --ink-mute:     #8a8499;
+  --line:         rgba(26, 22, 35, 0.10);
+
+  /* Card surface colors. */
+  --card:         #ffffff;
+  --card-soft:    #faf7ff;
+
+  /* Friendly accent palette. */
+  --coral:        #ff6b6b;
+  --sunshine:     #ffc93c;
+  --mint:         #4ecdc4;
+  --sky:          #4d96ff;
+  --grape:        #9b5de5;
+  --rose:         #ff8fab;
+  --leaf:         #6bcb77;
+
+  /* Feedback colors. */
+  --good:         #22c55e;
+  --bad:          #ef4444;
+
+  /* Radii. */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 32px;
+
+  /* Spacing scale. */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-7: 32px;
+  --s-8: 40px;
+
+  /* Type. */
+  --font-sans: 'Nunito', 'Vazirmatn', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Fredoka', 'Nunito', system-ui, sans-serif;
+
+  /* Shadows — soft, no offset. */
+  --shadow-sm: 0 1px 2px rgba(26, 22, 35, 0.06);
+  --shadow-md: 0 4px 14px rgba(26, 22, 35, 0.08);
+  --shadow-lg: 0 10px 30px rgba(26, 22, 35, 0.10);
+
+  /* Player color tints — used as low-opacity overlays on player cards.
+     Each player slot has one of these colors, in order: red, blue,
+     green, yellow, purple, orange, pink, teal. */
+  --tint-red:      #ffd4d2;
+  --tint-blue:     #cee0fb;
+  --tint-green:    #cdeecc;
+  --tint-yellow:   #fef0c7;
+  --tint-purple:   #e0d4fb;
+  --tint-orange:   #fcd9b8;
+  --tint-pink:     #fbcfdf;
+  --tint-teal:     #c8efe2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:        #1a1623;
+    --paper-2:      #251f33;
+    --ink:          #f7f3e9;
+    --ink-soft:     #c8c2d4;
+    --ink-mute:     #908aa0;
+    --line:         rgba(247, 243, 233, 0.10);
+
+    --card:         #251f33;
+    --card-soft:    #2e2740;
+
+    --coral:        #ff8585;
+    --sunshine:     #ffd55c;
+    --mint:         #6ee0d8;
+    --sky:          #7ab0ff;
+    --grape:        #b889f0;
+    --rose:         #ffa3bc;
+    --leaf:         #87df94;
+
+    --good:         #4ade80;
+    --bad:          #f87171;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.30);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.40);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.50);
+
+    /* Dark-mode tints — deeper, lower-saturation versions. */
+    --tint-red:      #3d1414;
+    --tint-blue:     #102a4f;
+    --tint-green:    #0f2a1a;
+    --tint-yellow:   #3a2c0e;
+    --tint-purple:   #221a3e;
+    --tint-orange:   #3a1f0c;
+    --tint-pink:     #3d1a2c;
+    --tint-teal:     #0e2c24;
+  }
+}
+
+html, body, #app { height: 100%; }
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-weight: 600;
+}
+
+[lang="fa"], [dir="rtl"] {
+  font-family: 'Vazirmatn', 'Nunito', system-ui, sans-serif;
+}
+
+button, input, select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+button { cursor: pointer; }
+
+a { color: inherit; }
+
+/* Utility — visually hidden but available to screen readers. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,60 @@
+{
+  "app": {
+    "title": "Insight",
+    "tagline": "How well do your friends really know you?"
+  },
+  "setup": {
+    "heading": "Set up your game",
+    "lede": "Add the players, then jump in.",
+    "playerCount": "Number of players",
+    "players_one": "{{count}} player",
+    "players_other": "{{count}} players",
+    "namesHeading": "Player names",
+    "nameLabel": "Player {{n}}",
+    "namePlaceholder": "Name for player {{n}}",
+    "wordList": "Word list",
+    "wordListEnglish": "English",
+    "wordListPersian": "فارسی",
+    "wordCount": "{{count}} words",
+    "start": "Start game",
+    "lowWordsWarning": "Only {{count}} words — pairs may repeat often.",
+    "allDone": "Everyone has been the Subject!"
+  },
+  "chooseSubject": {
+    "eyebrow": "Pick one",
+    "heading": "Who's the Subject?",
+    "lede": "The others will try to read this person.",
+    "back": "Back to setup"
+  },
+  "gameplay": {
+    "subject": "Subject",
+    "psychic": "Guesser",
+    "round": "Round",
+    "promptFor": "Which would {{name}} prefer?",
+    "shuffle": "Shuffle",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "noWords": "No words available."
+  },
+  "session": {
+    "eyebrow": "Session done",
+    "heading": "Nice round!",
+    "subject": "Subject: {{name}}",
+    "thisSession": "Scores this session",
+    "bestPsychic": "{{name}} knew {{subject}} best with {{score}} correct guesses!",
+    "tiedPsychic": "{{names}} tied for best with {{score}} correct guesses each!",
+    "pickNext": "Pick the next Subject",
+    "allDone": "Everyone has had a turn!",
+    "showResults": "See the final results"
+  },
+  "final": {
+    "eyebrow": "Game over",
+    "heading": "Final standings",
+    "playAgain": "Play again",
+    "changePlayers": "Change players"
+  },
+  "common": {
+    "points_one": "{{count}} pt",
+    "points_other": "{{count}} pts"
+  }
+}
