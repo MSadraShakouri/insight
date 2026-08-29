@@ -1,0 +1,77 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deployment at a time; a new push supersedes in-flight ones.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install --no-package-lock
+
+      - name: Prepare PWA site (copies to www/, bumps sw cache name)
+        run: npm run prepare:www
+
+      # GitHub Pages: enable with the "GitHub Actions" source on first
+      # run. The site must already exist as `build_type: workflow`.
+      #   gh api -X POST repos/<owner>/<repo>/pages -f build_type=workflow
+      - name: Ensure Pages source is GitHub Actions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          build_type=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq '.build_type' 2>/dev/null || echo "")
+          if [ "$build_type" = "workflow" ]; then
+            echo "Pages already uses the GitHub Actions source."
+          elif [ -n "$build_type" ]; then
+            echo "Pages exists with build type '$build_type'; switching to GitHub Actions."
+            if ! gh api --method PATCH "repos/$GITHUB_REPOSITORY/pages" -f build_type=workflow; then
+              echo "::warning::Could not switch Pages build type."
+            fi
+          else
+            echo "Pages is not enabled; enabling it with the GitHub Actions source."
+            if ! gh api --method POST "repos/$GITHUB_REPOSITORY/pages" -f build_type=workflow; then
+              echo "::warning::Could not enable Pages with GITHUB_TOKEN. Run once locally: gh api -X POST repos/$GITHUB_REPOSITORY/pages -f build_type=workflow"
+            fi
+          fi
+          for _ in $(seq 1 12); do
+            if gh api "repos/$GITHUB_REPOSITORY/pages" --jq '.build_type' >/dev/null 2>&1; then
+              break
+            fi
+            sleep 5
+          done
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: www
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

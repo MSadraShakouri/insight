@@ -6,6 +6,13 @@
 *.swo
 *~
 
-# Test deps (in case anyone runs npm install for jsdom-based tests)
+# Build artefacts (generated, not committed)
 node_modules/
+www/
+android/
+dist/
 
+# Android signing material
+*.jks
+*.keystore
+keystore.b64

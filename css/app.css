@@ -33,6 +33,12 @@
   font-weight: 700;
   font-size: 1.2rem;
   letter-spacing: -0.01em;
+  /* When .brand is a <button> (clickable home link), reset button styles. */
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
 }
 
 .brand-mark {

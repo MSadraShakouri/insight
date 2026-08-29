@@ -1,0 +1,125 @@
+name: Build Debug APK and Single-File Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # needed for commit count
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install --no-package-lock
+
+      - name: Prepare www folder
+        run: npm run prepare:www
+
+      - name: Add Android platform
+        run: npx cap add android
+
+      - name: Generate app icons (legacy + adaptive + monochrome)
+        run: npm run android:icons
+
+      - name: Sync Android project
+        run: npx cap sync android
+
+      # --- Versioning ---
+      - name: Set version from tag
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then
+            VERSION_NAME="${GITHUB_REF#refs/tags/v}"
+          else
+            VERSION_NAME="$(node -p "require('./package.json').version")-${GITHUB_RUN_NUMBER}"
+          fi
+          VERSION_CODE=$(git rev-list --count HEAD)
+          echo "VERSION_NAME=$VERSION_NAME" >> "$GITHUB_ENV"
+          echo "VERSION_CODE=$VERSION_CODE" >> "$GITHUB_ENV"
+          sed -i "s/versionName .*/versionName \"$VERSION_NAME\"/" android/app/build.gradle
+          sed -i "s/versionCode .*/versionCode $VERSION_CODE/" android/app/build.gradle
+
+      # --- Keystore ---
+      - name: Decode keystore
+        run: |
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > android/app/keystore.jks
+
+      - name: Configure Gradle to use custom keystore
+        run: |
+          cat >> android/app/build.gradle << 'EOF'
+
+          android {
+              signingConfigs {
+                  debug {
+                      storeFile file('keystore.jks')
+                      storePassword 'android'
+                      keyAlias 'insight'
+                      keyPassword 'android'
+                  }
+              }
+              buildTypes {
+                  debug {
+                      signingConfig signingConfigs.debug
+                  }
+              }
+          }
+          EOF
+
+      # --- Build with retry ---
+      - name: Build Debug APK
+        run: |
+          cd android
+          chmod +x gradlew
+          for i in $(seq 1 3); do
+            echo "Gradle build attempt $i"
+            if ./gradlew assembleDebug --no-daemon; then
+              echo "Build succeeded!"
+              exit 0
+            else
+              echo "Build failed, retrying in 10 seconds..."
+              sleep 10
+            fi
+          done
+          echo "All build attempts failed."
+          exit 1
+
+      - name: Rename APK for clarity
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk insight-debug.apk
+
+      - name: Build single-file HTML
+        run: |
+          node scripts/build-single.cjs
+          cp dist/insight.html "insight-v${VERSION_NAME}.html"
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: insight-debug-apk
+          path: insight-debug.apk
+          if-no-files-found: error
+
+      - name: Create Release and Upload APK + HTML
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            insight-debug.apk
+            insight-v${{ env.VERSION_NAME }}.html
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

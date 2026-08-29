@@ -1,0 +1,22 @@
+{
+  "name": "insight",
+  "version": "1.1.0",
+  "description": "A bilingual word-guessing party game. PWA, single-file build, and Android APK from one codebase.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare:www": "node scripts/prepare-www.cjs",
+    "build:single": "node scripts/build-single.cjs",
+    "android:icons": "node scripts/generate-android-icons.cjs",
+    "pwa:icons": "node scripts/generate-pwa-icons.cjs"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^7.6.8",
+    "@capacitor/cli": "^7.6.8",
+    "@capacitor/core": "^7.6.8",
+    "sharp": "^0.35.4"
+  },
+  "dependencies": {
+    "jsdom": "^29.1.1"
+  }
+}

@@ -4,6 +4,96 @@
    ============================================================ */
 
 /* ----------------------------------------------------------
+   Home screen
+   ---------------------------------------------------------- */
+.home { background: var(--card); }
+
+.home-howto {
+  background: var(--card-soft);
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-md);
+  padding: var(--s-4) var(--s-4);
+  margin: var(--s-4) 0;
+}
+
+.home-howto h2 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  margin-bottom: var(--s-3);
+  color: var(--ink-soft);
+}
+
+.home-steps {
+  list-style: decimal;
+  padding-left: var(--s-5);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+[dir="rtl"] .home-steps {
+  padding-left: 0;
+  padding-right: var(--s-5);
+}
+
+.home-steps li { margin-bottom: var(--s-2); }
+.home-steps li:last-child { margin-bottom: 0; }
+
+.home-note {
+  font-size: 0.85rem;
+  color: var(--ink-mute);
+  font-weight: 700;
+  margin-bottom: var(--s-4);
+}
+
+.home-actions {
+  display: flex;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.home-actions .btn { flex: 1 1 auto; min-width: 0; }
+
+/* ----------------------------------------------------------
+   About screen
+   ---------------------------------------------------------- */
+.about { background: var(--card); }
+
+.about-section {
+  margin-top: var(--s-5);
+}
+
+.about-section h2 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin-bottom: var(--s-2);
+}
+
+.about-section ul {
+  list-style: disc;
+  padding-left: var(--s-5);
+  font-weight: 700;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+[dir="rtl"] .about-section ul {
+  padding-left: 0;
+  padding-right: var(--s-5);
+}
+
+.about-section li { margin-bottom: var(--s-2); }
+.about-section li:last-child { margin-bottom: 0; }
+
+.about-actions {
+  margin-top: var(--s-6);
+}
+
+/* ----------------------------------------------------------
    Setup screen
    ---------------------------------------------------------- */
 .setup { background: var(--card); }

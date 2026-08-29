@@ -28,6 +28,17 @@ function applyDir() {
 export function loadI18n() {
   if (readyPromise) return readyPromise;
   readyPromise = (async () => {
+    // Fallback for the single-file build: scripts/build-single.cjs
+    // inlines the dicts on `window.__INSIGHT_I18N__` so the file can
+    // run from file:// without a server.
+    if (typeof window !== 'undefined' && window.__INSIGHT_I18N__) {
+      dicts = window.__INSIGHT_I18N__;
+      current = detectInitial();
+      applyDir();
+      ready = true;
+      return current;
+    }
+
     const baseUrl = import.meta.url.replace(/[^/]*$/, '');
     const [en, fa] = await Promise.all([
       fetch(new URL('../i18n/en.json', baseUrl)).then((r) => r.json()),

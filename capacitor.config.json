@@ -1,0 +1,8 @@
+{
+  "appId": "com.msadrashakouri.insight",
+  "appName": "Insight",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}

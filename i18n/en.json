@@ -3,6 +3,44 @@
     "title": "Insight",
     "tagline": "How well do your friends really know you?"
   },
+  "home": {
+    "eyebrow": "Word-guessing party game",
+    "heading": "Find out how well your friends really know you.",
+    "lede": "One person is the Subject. Everyone else is a Guesser. Two words appear, and the active Guesser asks the Subject which they'd prefer — out loud, in front of everyone.",
+    "howto": "How to play",
+    "howto1": "Add 2-8 players and a word list.",
+    "howto2": "Pick a Subject for the round. The Subject looks away.",
+    "howto3": "Two words appear. The active Guesser reads both, then asks the Subject which they'd prefer.",
+    "howto4": "Mark ✓ or ✗ based on the answer. Each correct guess scores a point. Shuffle to swap in a new pair.",
+    "howto5": "When everyone has had a turn, see who scored the most.",
+    "start": "Start a game",
+    "about": "About this game",
+    "languageNote": "Play in English or فارسی. The layout auto-flips to right-to-left for Persian."
+  },
+  "about": {
+    "eyebrow": "About",
+    "heading": "About Insight",
+    "lede": "A small, friendly game for 2-8 people.",
+    "rulesHeading": "Rules in detail",
+    "rule1": "Each round, one player is the Subject and everyone else is a Guesser. There are (N - 1) × 3 rounds per Subject, where N is the number of players.",
+    "rule2": "The Subject looks away from the screen. Two words appear. The active Guesser reads both words out loud, then asks the Subject which they'd prefer.",
+    "rule3": "The Subject answers honestly. Mark ✓ if the Guesser guessed correctly, ✗ if not. Each correct guess scores one point for the Guesser.",
+    "rule4": "Press 🔀 to swap in a fresh pair of words if neither feels right. Use it whenever you need a better comparison.",
+    "rule5": "When the round ends, the banner shows who read the Subject best. If two or more players tie, they are all co-winners.",
+    "rule6": "Pick the next Subject, or jump to the final results once everyone has had a turn.",
+    "scoringHeading": "Scoring",
+    "scoring1": "1 point per correct guess. There are no penalties for incorrect guesses.",
+    "scoring2": "Each Guesser sees every other player as Subject once, so the total number of guesses per player is roughly equal across a full game.",
+    "scoring3": "Final ranking uses standard competition ranking: tied players share a rank, the next rank skips.",
+    "privacyHeading": "Privacy",
+    "privacy1": "Insight runs entirely in your browser or as an installed app. Nothing is sent to a server.",
+    "privacy2": "Your language choice and the last group of player names are stored in localStorage so they pre-fill on your next visit. Clear your browser data to wipe them.",
+    "privacy3": "Word lists are bundled with the app. There is no account, no analytics, no upload step.",
+    "customizeHeading": "Word lists",
+    "customize1": "Two word lists ship with the game: an English set and a Persian (فارسی) set. The list auto-switches to match the language of the current game.",
+    "customize2": "To add your own words, edit data/words.js and add entries to the en or fa array. Keep the lists roughly the same length so neither feels stretched.",
+    "back": "Back"
+  },
   "setup": {
     "heading": "Set up your game",
     "lede": "Add the players, then jump in.",
@@ -55,6 +93,7 @@
   },
   "common": {
     "points_one": "{{count}} pt",
-    "points_other": "{{count}} pts"
+    "points_other": "{{count}} pts",
+    "versionLabel": "Version {{version}}"
   }
 }
