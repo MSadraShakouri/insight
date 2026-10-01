@@ -2,7 +2,7 @@
    The CACHE name is bumped automatically from package.json by
    scripts/prepare-www.cjs (APK build) and the GitHub Pages workflow,
    so every release invalidates the offline cache. */
-const CACHE = "insight-v1.1.0";
+const CACHE = "insight-v1.1.1";
 const CORE = [
   "./",
   "./index.html",
@@ -15,6 +15,8 @@ const CORE = [
   "./js/state.js",
   "./js/colors.js",
   "./js/storage.js",
+  "./js/screens/home.js",
+  "./js/screens/about.js",
   "./js/screens/setup.js",
   "./js/screens/chooseSubject.js",
   "./js/screens/gameplay.js",

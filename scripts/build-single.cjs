@@ -34,7 +34,10 @@ const loaded = new Map();
 
 function loadModule(rel) {
   const abs = path.join(root, rel);
-  if (loaded.has(abs)) return loaded.get(abs);
+  // A module shared by several importers is inlined once, at its first
+  // import site. Later imports are replaced with an empty string so
+  // top-level declarations aren't duplicated.
+  if (loaded.has(abs)) return '';
   loaded.set(abs, '');
   let src = fs.readFileSync(abs, 'utf8');
   const imports = [];

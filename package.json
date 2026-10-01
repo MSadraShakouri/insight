@@ -1,6 +1,6 @@
 {
   "name": "insight",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A bilingual word-guessing party game. PWA, single-file build, and Android APK from one codebase.",
   "private": true,
   "type": "module",
