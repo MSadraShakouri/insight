@@ -1,12 +1,11 @@
 // Word lists for the Insight game.
-// Two lists, one per language. They are curated to feel familiar to a
-// global (and especially an Iranian) audience: everyday foods, places,
-// hobbies, animals, weather and things people can easily compare.
-// The Persian list is not a literal translation of the English one —
-// it also has a few Iranian favourites.
+// Two lists, one per language, written for how people really live —
+// especially in Iran: everyday foods (including fast food, snacks and
+// cafe drinks), games and apps, sports, places, hobbies, holidays and
+// Iranian favourites. Things Iranians don't actually have or eat
+// (e.g. pork products, Play-Doh, pumpkin pie) are left out.
 //
-// To add words, append to the `en` or `fa` array. Avoid duplicates and
-// regional-only references that most players won't recognise.
+// To add words, append to the `en` or `fa` array and avoid duplicates.
 
 export const wordLists = {
   en: [
@@ -144,7 +143,47 @@ export const wordLists = {
     'fresh sheets', 'new notebooks', 'new shoes', 'old photographs',
     'handwritten letters', 'thank-you notes', 'lullabies', 'proverbs',
     'riddles', 'poetry', 'storytelling nights', 'audio dramas',
-    'board game cafes',
+    'board game cafes', 'hot dogs', 'sausages', 'kalbas sandwiches',
+    'chicken nuggets', 'onion rings', 'nachos', 'brownies',
+    'cereal', 'biscuits', 'puffed corn snacks', 'popsicles',
+    'mojitos', 'mac and cheese', 'grilled cheese sandwiches', 'protein bars',
+    'food trucks', 'energy drinks', 'hot peppers', 'hot sauce',
+    'ketchup', 'mayonnaise', 'turkey', 'waffle cones',
+    'chocolate spread', 'peanut butter', 'peanuts', 'bubble tea',
+    'iced coffee', 'cappuccino', 'milk', 'cocoa',
+    'fizzy drinks', 'pastries', 'cream puffs', 'barbecue chicken',
+    'grilled corn', 'corn on the cob', 'roasted chestnuts', 'hopscotch',
+    'marbles', 'spinning tops', 'water guns', 'board game nights',
+    'PlayStation', 'FIFA', 'PUBG', 'Minecraft',
+    'Instagram', 'Telegram', 'WhatsApp', 'YouTube',
+    'voice messages', 'video calls', 'selfies', 'memes',
+    'TikTok videos', 'series marathons', 'Netflix', 'cinema',
+    'popcorn at the cinema', 'stand-up comedians', 'football matches', 'the World Cup',
+    'the Olympics', 'Messi', 'Ronaldo', 'gym workouts',
+    'hiking in the mountains', 'skiing resorts', 'shopping malls', 'car rides',
+    'driving at night', 'traffic jams', 'taxi apps', 'food delivery apps',
+    'online shopping', 'discount sales', 'coupons', 'gold coins',
+    'smartwatches', 'tablets', 'power banks', 'earbuds',
+    'phone cases', 'selfie sticks', 'cheese puffs', 'sunflower seeds and pistachios',
+    'raisin and walnut mix', 'watermelon on a hot night', 'cold drinks in summer', 'air conditioners',
+    'heaters', 'snow in the city', 'first snow', 'ski trips',
+    'beach trips', 'camping by a river', 'sleeping on the rooftop', 'moving to a new city',
+    'living abroad', 'learning English', 'learning to code', 'studying at night',
+    'exams', 'homework', 'school trips', 'university life',
+    'summer jobs', 'pocket money', 'piggy banks', 'hosting a party',
+    'dancing at parties', 'live concerts', 'pop music', 'rock music',
+    'traditional music', 'playing the tar', 'playing the daf', 'reading poetry',
+    'Hafez poetry', 'Shahnameh stories', 'Persian carpets', 'Persian tea',
+    'Persian rice', 'tahdig', 'ghormeh sabzi', 'fesenjan',
+    'kebab koobideh', 'joojeh kebab', 'chelo kabab', 'abgoosht',
+    'ash reshteh', 'halim', 'kuku sabzi', 'baghali polo',
+    'zereshk polo', 'adas polo', 'mirza ghasemi', 'kashk-e bademjan',
+    'doogh', 'faloodeh', 'saffron ice cream', 'gaz',
+    'sohan', 'sholeh zard', 'sangak bread', 'lavash',
+    'barbari bread', 'sabzi khordan', 'rosewater', 'Nowruz',
+    'Yalda Night', 'haft-seen table', 'Chaharshanbe Suri', 'Sizdah Bedar',
+    'Eidi money', 'Persepolis', 'Isfahan', 'Shiraz',
+    'the Caspian Sea', 'northern Iran', 'Tehran',
   ],
 
   fa: [
@@ -292,5 +331,38 @@ export const wordLists = {
     'سیزده\u200cبدر', 'شب یلدا', 'سفره هفت\u200cسین', 'عیدی گرفتن',
     'چهارشنبه\u200cسوری', 'تخت\u200cجمشید', 'اصفهان', 'شیراز',
     'کویر مرکزی', 'شمال ایران', 'دریای خزر', 'کافه\u200cگردی',
+    'هات\u200cداگ', 'سوسیس', 'ساندویچ کالباس', 'ناگت مرغ',
+    'حلقه پیاز', 'ناچو', 'براونی', 'کورن\u200cفلکس',
+    'بیسکویت', 'پفک', 'بستنی یخی', 'موهیتو',
+    'ماکارونی با پنیر', 'ساندویچ پنیر گریل', 'پروتئین بار', 'فودتراک',
+    'نوشیدنی انرژی\u200cزا', 'فلفل تند', 'سس تند', 'سس کچاپ',
+    'سس مایونز', 'بوقلمون', 'بستنی قیفی', 'شکلات صبحانه',
+    'کره بادام\u200cزمینی', 'بادام\u200cزمینی', 'بابل تی', 'قهوه سرد',
+    'کاپوچینو', 'کاکائو', 'نوشیدنی گازدار', 'شیرینی',
+    'نان خامه\u200cای', 'مرغ کبابی', 'ذرت مکزیکی', 'بلال',
+    'شاه\u200cبلوط کبابی', 'لی\u200cلی', 'تیله\u200cبازی', 'فرفره',
+    'تفنگ آبی', 'شب بازی', 'پلی\u200cاستیشن', 'فیفا',
+    'پابجی', 'ماین\u200cکرافت', 'اینستاگرام', 'تلگرام',
+    'واتس\u200cاپ', 'یوتیوب', 'پیام صوتی', 'تماس تصویری',
+    'سلفی', 'میم', 'ویدیوی تیک\u200cتاک', 'ماراتن سریال',
+    'نتفلیکس', 'سینما', 'پاپ\u200cکورن در سینما', 'کمدین',
+    'مسابقه فوتبال', 'جام جهانی', 'المپیک', 'مسی',
+    'رونالدو', 'تمرین بدنسازی', 'کوه\u200cپیمایی', 'پیست اسکی',
+    'پاساژ', 'ماشین\u200cسواری', 'رانندگی شبانه', 'ترافیک',
+    'تاکسی اینترنتی', 'سفارش آنلاین غذا', 'خرید اینترنتی', 'حراج',
+    'کد تخفیف', 'سکه طلا', 'ساعت هوشمند', 'تبلت',
+    'پاوربانک', 'ایرپاد', 'قاب گوشی', 'مونوپاد',
+    'چیپس پنیری', 'تخمه و پسته', 'آجیل مخلوط', 'هندوانه در شب گرم',
+    'نوشیدنی خنک تابستان', 'کولر', 'بخاری', 'برف در شهر',
+    'اولین برف', 'سفر اسکی', 'سفر ساحلی', 'کمپ کنار رودخانه',
+    'خوابیدن روی پشت\u200cبام', 'نقل مکان به شهر جدید', 'زندگی در خارج از کشور', 'یادگیری انگلیسی',
+    'یادگیری برنامه\u200cنویسی', 'درس\u200cخواندن شبانه', 'امتحان', 'تکلیف',
+    'اردوی مدرسه', 'زندگی دانشجویی', 'کار تابستانی', 'پول توجیبی',
+    'قلک', 'برگزاری پارتی', 'رقص در مهمانی', 'کنسرت زنده',
+    'موسیقی پاپ', 'موسیقی راک', 'موسیقی سنتی', 'تار زدن',
+    'دف زدن', 'شعرخوانی', 'دیوان حافظ', 'داستان\u200cهای شاهنامه',
+    'فرش دستباف', 'چای ایرانی', 'پلو ایرانی', 'بستنی زعفرانی',
+    'نان بربری', 'عرق گلاب', 'نوروز', 'عیدی',
+    'تهران',
   ],
 };
